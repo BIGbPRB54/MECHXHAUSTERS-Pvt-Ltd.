@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MECHXHAUSTERS | Performance Combustion Vehicles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;600&display=swap');
+        
+        :root {
+            --primary: #7d00fe;
+            --secondary: #00f0ff;
+            --dark: #0a0a18;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark);
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at center, rgba(125,0,254,0.3) 0%, rgba(10,10,24,1) 70%);
+        }
+        
+        .loading-bar {
+            animation: load 2.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+        }
+        
+        @keyframes load {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+        
+        .vehicle-card:hover .vehicle-info {
+            transform: translateY(-20px);
+            opacity: 1;
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Add styles for your image slider here, e.g., for Swiper.js */
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+    <!-- Add Swiper.js CSS if you choose to use it -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 bg-black z-50 flex flex-col justify-center items-center">
+        <div class="w-64 h-1 bg-gray-800 rounded-full mb-4 overflow-hidden">
+            <div class="loading-bar h-full bg-gradient-to-r from-purple-800 to-cyan-400"></div>
+        </div>
+        <h2 class="orbitron text-xl text-center">
+            <span class="gradient-text">MECHXHAUSTERS</span>
+            <span class="block text-xs text-gray-400 mt-1">Initializing performance systems</span>
+        </h2>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full py-4 px-6 z-40 backdrop-blur-md bg-black/50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="orbitron text-2xl font-bold">
+                <span class="gradient-text">MECHX</span>HAUSTERS
+            </a>
+            
+            <div class="hidden md:flex space-x-8 items-center">
+               <a href="index.html" class="ml-6 px-6 py-2 bg-gradient-to-r from-purple-700 to-cyan-500                    rounded-full orbitron hover:opacity-90 transition">Home</a>
+                <a href="vehicles.html" class="hover:text-cyan-400 transition">Vehicles</a>
+                <a href="racetrack-events.html" class="hover:text-cyan-400 transition">Racing Events</a>
+                <a href="careers.html" class="hover:text-cyan-400 transition">Careers</a>
+                <a href="our-network.html" class="hover:text-cyan-400 transition">Our Network</a>
+                <a href="contact.html" class="hover:text-cyan-400 transition">Contact</a>             </div>
+            
+            <button id="mobileMenuButton" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden absolute top-full left-0 w-full bg-black/95 p-6 border-t border-gray-800">
+            <div class="flex flex-col space-y-4">
+                <a href="vehicles.html" class="py-2 hover:text-cyan-400 transition">Vehicles</a>
+                <a href="racetrack-events.html" class="py-2 hover:text-cyan-400 transition">Racing Events</a>
+                <a href="careers.html" class="py-2 hover:text-cyan-400 transition">Careers</a>
+                <a href="our-network.html" class="py-2 hover:text-cyan-400 transition">Our Network</a>
+                <a href="contact.html" class="py-2 hover:text-cyan-400 transition">Contact</a>
+                <a href="#" class="mt-4 px-6 py-3 bg-gradient-to-r from-purple-700 to-cyan-500 rounded-full orbitron text-center hover:opacity-90 transition">Reserve Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Image Slider -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden hero-gradient">
+        <!-- Image Slider Container - You will need to integrate a JS library like Swiper.js here -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+            <h1 class="orbitron text-5xl md:text-7xl font-bold mb-6">
+                <span class="gradient-text">DESIGN, BU</span>ILD, RACE
+            </h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10 text-gray-300">
+                Pioneering the future of high-performance combustion vehicles with racing DNA and cutting-edge innovation
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="vehicles.html" class="px-8 py-4 bg-gradient-to-r from-purple-700 to-cyan-500 rounded-full orbitron hover:opacity-90 transition">
+                    Explore Models
+                </a>
+                <a href="contact.html" class="px-8 py-4 border border-gray-600 rounded-full hover:bg-white/10 transition">
+                    Book Test Drive
+                </a>
+            </div><div class="swiper-container absolute w-full h-full object-cover opacity-40">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image: url('https://placehold.co/1920x1080/000000/FFFFFF?text=MECHXHAUSTERS+Car+1');"></div>
+                <div class="swiper-slide" style="background-image: url('https://placehold.co/1920x1080/000000/FFFFFF?text=MECHXHAUSTERS+Car+2');"></div>
+                <div class="swiper-slide" style="background-image: url('https://placehold.co/1920x1080/000000/FFFFFF?text=MECHXHAUSTERS+Car+3');"></div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Navigation (Arrows) -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+        
+        
+            
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 scroll-indicator">
+                <svg class="w-8 h-8 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Racing Heritage Section -->
+    <section class="py-20 px-6 bg-black">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="orbitron text-3xl md:text-4xl font-bold mb-4">
+                <span class="gradient-text">BEYOND</span> THE ROAD
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto mb-8">
+                MECHXHAUSTERS isn't just about performance on the street; we live and breathe the thrill of the racetrack. We proudly participate in and host events at iconic circuits like the Buddh International Circuit (BIC), bringing our engineering prowess to competitive motorsport.
+            </p>
+            <a href="racetrack-events.html" class="inline-block px-8 py-3 border border-gray-700 hover:border-cyan-400 rounded-full hover:text-cyan-400 transition">
+                Explore Our Racing Events
+            </a>
+        </div>
+    </section>
+
+    <!-- Customization Section -->
+    <section class="py-20 px-6 bg-gradient-to-b from-black to-gray-900">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="orbitron text-3xl md:text-4xl font-bold mb-4">
+                <span class="gradient-text">UNLEASH</span> YOUR VISION
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto mb-8">
+                Every MECHXHAUSTERS vehicle is a canvas for your passion. We offer an extensive range of customization options, allowing you to tailor your vehicle to your exact specifications, from performance enhancements to unique aesthetic touches.
+            </p>
+            <img src="C:\Users\piyus\OneDrive\Desktop\brandweb multipage\sideview.png" alt="Customized MechXhausters vehicle" class="rounded-xl shadow-lg mx-auto mt-10">
+        </div>
+    </section>
+
+    <!-- Vehicles Section (Kept for quick access, but main vehicle details will be on vehicles.html) -->
+    
+<section id="vehicles" class="py-20 px-6 bg-black">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="orbitron text-3xl md:text-4xl font-bold mb-4">
+                <span class="gradient-text">MECHX</span> LINEUP
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">
+                Our range of high-octane combustion performance vehicles designed for the track and street
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            <!-- FALCON Card -->
+            <div class="relative h-96 rounded-xl overflow-hidden group vehicle-card">
+                <img src="C:\Users\piyus\OneDrive\Desktop\brandweb multipage\Falcon.png" alt="MechXhausters Falcon" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-6 vehicle-info opacity-0 transition duration-500">
+                    <h3 class="orbitron text-2xl font-bold mb-2">FALCON</h3>
+                    <div class="flex justify-between text-sm mb-4">
+                        <span>Top Speed: 125 km/h</span>
+                        <span>Engine: Single-Cylinder</span>
+                    </div>
+                    <p class="text-gray-300 text-sm mb-4">
+                        Designed for enthusiasts, Falcon offers nimble handling, responsive performance, and future upgradability.
+                    </p>
+                    <a href="vehicles.html#falcon" class="text-cyan-400 orbitron text-sm">Explore Falcon</a>
+                </div>
+            </div>
+
+            <!-- PHOENIX Card -->
+            <div class="relative h-96 rounded-xl overflow-hidden group vehicle-card">
+                <img src="C:\Users\piyus\OneDrive\Desktop\brandweb multipage\phoenix.jpg" alt="MechXhausters Phoenix" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-6 vehicle-info opacity-0 transition duration-500">
+                    <h3 class="orbitron text-2xl font-bold mb-2">PHOENIX</h3>
+                    <div class="flex justify-between text-sm mb-4">
+                        <span>Top Speed: 150 km/h</span>
+                        <span>Engine: ECU-Tuned</span>
+                    </div>
+                    <p class="text-gray-300 text-sm mb-4">
+                        Built for professionals, Phoenix features AI-assisted dynamics, active aero, and performance-focused tuning.
+                    </p>
+                    <a href="vehicles.html#phoenix" class="text-cyan-400 orbitron text-sm">Explore Phoenix</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="vehicles.html" class="inline-block px-8 py-3 border border-gray-700 hover:border-cyan-400 rounded-full hover:text-cyan-400 transition">
+                View Full Vehicle Lineup
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Technology Section (Adjusted for combustion) -->
+    <section id="technology" class="py-20 px-6 bg-gradient-to-b from-black to-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">TECHNOLOGY</span> INNOVATION
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Cutting-edge engineering that powers our extreme performance vehicles
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-gray-900/50 p-8 rounded-xl border border-gray-800 hover:border-cyan-400/30 transition group">
+                    <div class="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center mb-6 group-hover:bg-cyan-400/10 transition">
+                        <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="orbitron text-xl font-bold mb-3">390 CC COMBUSTION ENGINE</h3>
+                    <p class="text-gray-400">
+                        Our proprietary high-revving, forced-induction engines deliver unparalleled power and responsiveness.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-900/50 p-8 rounded-xl border border-gray-800 hover:border-cyan-400/30 transition group">
+                    <div class="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center mb-6 group-hover:bg-cyan-400/10 transition">
+                        <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="orbitron text-xl font-bold mb-3">ADVANCED FUEL SYSTEMS</h3>
+                    <p class="text-gray-400">
+                        Precision fuel delivery and management systems optimize combustion efficiency and power output.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-900/50 p-8 rounded-xl border border-gray-800 hover:border-cyan-400/30 transition group">
+                    <div class="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center mb-6 group-hover:bg-cyan-400/10 transition">
+                        <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="orbitron text-xl font-bold mb-3">DYNAMIC AERO</h3>
+                    <p class="text-gray-400">
+                        Active aerodynamics adjust in real-time for optimal downforce and efficiency across all driving conditions.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-16">
+    <!-- Text Content -->
+    <div class="px-6">
+        <h3 class="orbitron text-3xl md:text-4xl font-bold mb-4">
+            <span class="gradient-text">ENGINEERED</span> FOR EXTREMES
+        </h3>
+        <p class="text-gray-300 mb-6">
+            Every MechXhausters vehicle undergoes rigorous testing in the most demanding conditions to ensure unparalleled performance when it matters most.
+        </p>
+        <a href="vehicles.html" class="inline-flex items-center text-cyan-400 orbitron">
+            Explore Our Engineering
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+        </a>
+    </div>
+
+    <!-- Image -->
+    <div class="w-[700px] h-[350px] rounded-xl overflow-hidden shadow-lg">
+        <img src="C:\Users\piyus\OneDrive\Desktop\brandweb multipage\Testing.jpg"
+             alt="MechXhausters vehicle showing detailed view of combustion engine with performance components"
+             class="w-full h-full object-cover" />
+    </div>
+</div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-1/2">
+                    <div class="relative rounded-xl overflow-hidden h-96">
+                        <img src="C:\Users\piyus\OneDrive\Desktop\brandweb multipage\ECU Tuning.jpg"alt="MechXhausters engineering team working on vehicle chassis in high-tech lab" class="w-full h-full object-cover" />
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <h2 class="orbitron text-3xl md:text-4xl font-bold mb-6">
+                        <span class="gradient-text">WHO</span> WE ARE
+                    </h2>
+                    <p class="text-gray-400 mb-6">
+                        Born from motorsport passion and engineering excellence, MechXhausters combines racing heritage with combustion innovation to redefine automotive performance.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-cyan-400 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-300">Founded by former racing engineers and performance vehicle specialists</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-cyan-400 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-300">Multiple motorsport championship wins in various categories</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-cyan-400 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-300">Over 20 patents in high-performance combustion technology</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-cyan-400 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-300">Commitment to sustainable practices in manufacturing</span>
+                        </li>
+                    </ul>
+                    <a href="careers.html" class="px-6 py-3 border border-cyan-400 text-cyan-400 rounded-full hover:bg-cyan-400/10 transition orbitron inline-block">
+                        Our Story
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section (Kept for quick access, but main contact details will be on contact.html) -->
+    <section id="contact" class="py-20 px-6 bg-gradient-to-b from-gray-900 to-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">CONTACT</span> US
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Interested in owning the future of performance? Get in touch with our team.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="firstName" class="block text-sm font-medium text-gray-400 mb-1">First Name</label>
+                                <input type="text" id="firstName" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent outline-none transition" placeholder="Enter your name">
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-sm font-medium text-gray-400 mb-1">Last Name</label>
+                                <input type="text" id="lastName" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent outline-none transition" placeholder="Enter your last name">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-400 mb-1">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent outline-none transition" placeholder="your@email.com">
+                        </div>
+                        
+                        <div>
+                            <label for="interest" class="block text-sm font-medium text-gray-400 mb-1">Interest</label>
+                            <select id="interest" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent outline-none transition text-white">
+                                <option>Vehicle Purchase</option>
+                                <option>Test Drive</option>
+                                <option>Investor Relations</option>
+                                <option>Press Inquiry</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-400 mb-1">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent outline-none transition" placeholder="Your message"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full px-6 py-4 bg-gradient-to-r from-purple-700 to-cyan-500 rounded-lg orbitron font-bold hover:opacity-90 transition">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+              <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-8">
+    <h3 class="orbitron text-2xl font-bold mb-6">
+        <span class="gradient-text">HEADQUARTERS</span>
+    </h3>
+
+    <div class="space-y-6">
+        <!-- Address -->
+        <div class="flex items-start">
+            <svg class="w-6 h-6 text-cyan-400 mt-0.5 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <div>
+                <h4 class="orbitron font-semibold mb-1">Address</h4>
+                <p class="text-gray-400">Mahindra World City<br>Chengalpattu, Tamil Nadu, India</p>
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div class="flex items-start">
+            <svg class="w-6 h-6 text-cyan-400 mt-0.5 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <div>
+                <h4 class="orbitron font-semibold mb-1">Email</h4>
+                <p class="text-gray-400">
+                    fsae_mechx@nitw.ac.in<br>
+                    support@mechxhausters.com
+                </p>
+            </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="flex items-start">
+            <svg class="w-6 h-6 text-cyan-400 mt-0.5 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <div>
+                <h4 class="orbitron font-semibold mb-1">Phone</h4>
+                <p class="text-gray-400">+91 xxxx 123 4567</p>
+            </div>
+        </div>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 px-6 bg-gray-900">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="orbitron text-2xl md:text-3xl font-bold mb-4">
+                <span class="gradient-text">JOIN</span> THE MECHX REVOLUTION
+            </h3>
+            <p class="text-gray-400 max-w-2xl mx-auto mb-8">
+                Be the first to receive exclusive updates on new models, limited editions, and special events.
+            </p>
+            
+            <form class="flex flex-col sm:flex-row gap-3 justify-center max-w-xl mx-auto">
+                <input type="email" placeholder="Enter your email" class="flex-grow px-5 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent outline-none transition">
+                <button type="submit" class="px-6 py-3 bg-gradient-to-r from-purple-700 to-cyan-500 rounded-lg orbitron font-semibold hover:opacity-90 transition">
+                    Subscribe
+                </button>
+            </form>
+            
+            <p class="text-gray-500 text-xs mt-4">
+                By subscribing, you agree to our <a href="#" class="text-cyan-400 hover:underline">Privacy Policy</a>.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 px-6 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between mb-12">
+                <div class="mb-8 md:mb-0">
+                    <a href="index.html" class="orbitron text-2xl font-bold mb-4 block">
+                        <span class="gradient-text">MECHX</span>HAUSTERS
+                    </a>
+                    <p class="text-gray-500 max-w-md">
+                        Redefining the boundaries of combustion performance through relentless innovation and racing heritage.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="orbitron font-semibold text-gray-300 mb-4">Quick Links</h4>
+                        <ul class="space-y-3">
+                            <li><a href="vehicles.html" class="text-gray-500 hover:text-cyan-400 transition">Models</a></li>
+                            <li><a href="racetrack-events.html" class="text-gray-500 hover:text-cyan-400 transition">Racing Events</a></li>
+                            <li><a href="our-network.html" class="text-gray-500 hover:text-cyan-400 transition">Our Network</a></li>
+                            <li><a href="contact.html" class="text-gray-500 hover:text-cyan-400 transition">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="orbitron font-semibold text-gray-300 mb-4">Company</h4>
+                        <ul class="space-y-3">
+                            <li><a href="careers.html" class="text-gray-500 hover:text-cyan-400 transition">About Us</a></li>
+                            <li><a href="careers.html" class="text-gray-500 hover:text-cyan-400 transition">Careers</a></li>
+                            <li><a href="#" class="text-gray-500 hover:text-cyan-400 transition">Newsroom</a></li>
+                            <li><a href="#" class="text-gray-500 hover:text-cyan-400 transition">Sustainability</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="orbitron font-semibold text-gray-300 mb-4">Legal</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-gray-500 hover:text-cyan-400 transition">Privacy Policy</a></li>
+                            <li><a href="#" class="text-gray-500 hover:text-cyan-400 transition">Terms of Service</a></li>
+                            <li><a href="#" class="text-gray-500 hover:text-cyan-400 transition">Cookie Policy</a></li>
+                            <li><a href="#" class="text-gray-500 hover:text-cyan-400 transition">Recall Information</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center">
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="https://twitter.com/mechxhausters" target="_blank" class="text-gray-500 hover:text-cyan-400 transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/mechxhausters" target="_blank" class="text-gray-500 hover:text-cyan-400 transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/company/mechxhausters" target="_blank" class="text-gray-500 hover:text-cyan-400 transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://facebook.com/mechxhausters" target="_blank" class="text-gray-500 hover:text-cyan-400 transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://youtube.com/mechxhausters" target="_blank" class="text-gray-500 hover:text-cyan-400 transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="text-gray-500 text-sm">
+                    © 2024 MechXhausters Automotive. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add Swiper.js JS if you choose to use it -->
+    <!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('preloader').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('preloader').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobileMenuButton').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Animate elements when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeIn');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.vehicle-card, .hero-gradient h1, .hero-gradient p').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize Swiper (if you add the library)
+        /*
+        document.addEventListener('DOMContentLoaded', function() {
+            new Swiper('.swiper-container', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+        });
+        */
+    </script>
+</body>
+</html>
